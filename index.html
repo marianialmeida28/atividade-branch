@@ -37,3 +37,60 @@
   <h2>Evento</h2>
   <button onclick="mostrarEvento()">Mostrar Evento</button>
   <div id="evento"></div>
+
+  <script>
+    const usuarios = [];
+
+    // Funcionalidade 1: Cadastro
+    function cadastrar() {
+      const usuario = document.getElementById('novoUsuario').value;
+      const senha = document.getElementById('novaSenha').value;
+      
+      if (!usuario || !senha) {
+        alert("Preencha todos os campos.");
+        return;
+      }
+
+      const existente = usuarios.find(u => u.usuario === usuario);
+      if (existente) {
+        alert("Usuário já existe!");
+        return;
+      }
+
+      usuarios.push({ usuario, senha });
+      alert("Usuário cadastrado com sucesso!");
+    }
+
+    // Funcionalidade 2: Login
+    function login() {
+      const usuario = document.getElementById('usuarioLogin').value;
+      const senha = document.getElementById('senhaLogin').value;
+
+      const encontrado = usuarios.find(u => u.usuario === usuario && u.senha === senha);
+
+      if (encontrado) {
+        document.getElementById('mensagem').innerText = "Login realizado com sucesso!";
+      } else {
+        document.getElementById('mensagem').innerText = "Usuário ou senha incorretos.";
+      }
+    }
+
+    // Funcionalidade 3: Logout
+    function logout() {
+      document.getElementById('mensagem').innerText = "Logout realizado!";
+    }
+
+    // Funcionalidade 4: Mostrar data
+    function mostrarData() {
+      const dataAtual = new Date().toLocaleString();
+      document.getElementById('data').innerText = `Data e hora: ${dataAtual}`;
+    }
+
+    // Funcionalidade 5: Mostrar evento
+    function mostrarEvento() {
+      document.getElementById('evento').innerText = "Evento: Semana de Tecnologia - 20 a 24 de Outubro";
+    }
+  </script>
+
+</body>
+</html>
